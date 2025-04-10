@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/agro-english-app/static/css/main.e6c13ad2.css",
+    "main.js": "/agro-english-app/static/js/main.f5910e72.js",
+    "index.html": "/agro-english-app/index.html",
+    "main.e6c13ad2.css.map": "/agro-english-app/static/css/main.e6c13ad2.css.map",
+    "main.f5910e72.js.map": "/agro-english-app/static/js/main.f5910e72.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.f5910e72.js"
+  ]
+}
