@@ -8,7 +8,7 @@ const machineryData = [
     nameEn: "Tractor",
     description: "Veiculo utilizado para puxar ou empurrar implementos agricolas.",
     example: "The farmer needs a new tractor for the upcoming harvest season.",
-    imageUrl: "https://i.imgur.com/xzTHzK8.jpg",
+    imageUrl: "../public/images/tractor.png",
     difficulty: "easy",
     category: "basic",
   },
@@ -72,16 +72,16 @@ function App() {
     setProgress(progressValue);
   }, [mastered]);
   
-  // Avançar para o próximo item
+  // AvanÃ§ar para o prÃ³ximo item
   const handleNext = () => {
     if (currentIndex < machineryData.length - 1) {
       setCurrentIndex(currentIndex + 1);
       setShowInfo(false);
     } else if (viewMode === 'learn' && mastered.length < machineryData.length / 2) {
-      // Se o usuário viu todos os itens, mas ainda não dominou metade, sugerir revisão
+      // Se o usuÃ¡rio viu todos os itens, mas ainda nÃ£o dominou metade, sugerir revisÃ£o
       startReview();
     } else if (viewMode === 'learn') {
-      // Se o usuário viu todos os itens e dominou pelo menos metade, sugerir quiz
+      // Se o usuÃ¡rio viu todos os itens e dominou pelo menos metade, sugerir quiz
       startQuiz();
     }
   };
@@ -109,15 +109,15 @@ function App() {
       setMastered(mastered.filter(itemId => itemId !== id));
     } else {
       setMastered([...mastered, id]);
-      // Simular pontuação e animação de conquista
+      // Simular pontuaÃ§Ã£o e animaÃ§Ã£o de conquista
       console.log("Achievement unlocked!");
     }
   };
   
-  // Iniciar modo de revisão
+  // Iniciar modo de revisÃ£o
   const startReview = () => {
     setViewMode('review');
-    // Filtrar itens não dominados para revisão
+    // Filtrar itens nÃ£o dominados para revisÃ£o
     const notMasteredItems = machineryData.filter(item => !mastered.includes(item.id));
     if (notMasteredItems.length > 0) {
       setCurrentIndex(machineryData.indexOf(notMasteredItems[0]));
@@ -135,13 +135,13 @@ function App() {
     const questionType = Math.random() > 0.5 ? 'translate' : 'match';
     const correctItem = machineryData[currentIndex];
     
-    // Gera 3 opções erradas aleatórias
+    // Gera 3 opÃ§Ãµes erradas aleatÃ³rias
     let wrongOptions = machineryData
       .filter(item => item.id !== correctItem.id)
       .sort(() => 0.5 - Math.random())
       .slice(0, 3);
     
-    // Cria um array com todas as opções e embaralha
+    // Cria um array com todas as opÃ§Ãµes e embaralha
     const allOptions = [correctItem, ...wrongOptions].sort(() => 0.5 - Math.random());
     
     if (questionType === 'translate') {
@@ -172,26 +172,26 @@ function App() {
     setQuizAnswers([...quizAnswers, { answer, isCorrect }]);
     
     if (isCorrect && !mastered.includes(quizQuestion.itemId)) {
-      // Se acertou e ainda não dominava, marca como dominado
+      // Se acertou e ainda nÃ£o dominava, marca como dominado
       setMastered([...mastered, quizQuestion.itemId]);
     }
     
-    // Após pequeno delay, gera nova pergunta ou volta ao modo aprendizado
+    // ApÃ³s pequeno delay, gera nova pergunta ou volta ao modo aprendizado
     setTimeout(() => {
       if (quizAnswers.length < 4) {
         // Continua o quiz se tiver respondido menos de 5 perguntas
         generateQuizQuestion();
       } else {
-        // Volta para o modo aprendizado após 5 perguntas
+        // Volta para o modo aprendizado apÃ³s 5 perguntas
         setViewMode('learn');
         handleNext();
       }
     }, 1500);
   };
   
-  // Simular áudio de pronúncia
+  // Simular Ã¡udio de pronÃºncia
   const playPronunciation = () => {
-    // Aqui seria implementada a reprodução de áudio
+    // Aqui seria implementada a reproduÃ§Ã£o de Ã¡udio
     console.log(`Playing pronunciation for: ${currentItem.nameEn}`);
   };
 
@@ -398,12 +398,12 @@ function App() {
     }
   };
   
-  // Renderiza o conteúdo com base no modo de visualização
+  // Renderiza o conteÃºdo com base no modo de visualizaÃ§Ã£o
   const renderContent = () => {
     if (viewMode === 'learn' || viewMode === 'review') {
       return (
         <div style={{ textAlign: 'center' }}>
-          {/* Imagem da máquina */}
+          {/* Imagem da mÃ¡quina */}
           <div style={styles.imageContainer}>
             <img 
               src={currentItem.imageUrl}
@@ -412,7 +412,7 @@ function App() {
             />
           </div>
           
-          {/* Termos em português e inglês */}
+          {/* Termos em portuguÃªs e inglÃªs */}
           <div>
             <span style={{...styles.languageTag, ...styles.ptTag}}>Portugues</span>
             <h2 style={styles.wordPt}>{currentItem.namePt}</h2>
@@ -447,7 +447,7 @@ function App() {
             </div>
           )}
           
-          {/* Botões de ação */}
+          {/* BotÃµes de aÃ§Ã£o */}
           <div style={styles.buttonsContainer}>
             <div style={{ display: 'flex' }}>
               <button 
@@ -530,7 +530,7 @@ function App() {
   
   return (
     <div style={styles.appContainer}>
-      {/* Cabeçalho */}
+      {/* CabeÃ§alho */}
       <header style={styles.header}>
         <h1 style={styles.title}>AgroEnglish</h1>
         <h2 style={styles.subtitle}>Modulo 1: Maquinario Agricola</h2>
@@ -541,12 +541,12 @@ function App() {
         </div>
       </header>
       
-      {/* Conteúdo principal */}
+      {/* ConteÃºdo principal */}
       <main style={styles.mainContent}>
         {renderContent()}
       </main>
       
-      {/* Barra de navegação inferior */}
+      {/* Barra de navegaÃ§Ã£o inferior */}
       <nav style={styles.navigationBar}>
         <button 
           onClick={() => setViewMode('learn')} 
